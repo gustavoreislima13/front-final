@@ -1,31 +1,36 @@
 import Layout from '../layout';
-import Image from 'next/image';
-import { ImagemSelecionada } from '@/app/types';
 
-export default async function Tema2(){
-    const response = await fetch(`http://localhost:3000/api`);
-    const imagens = await response.json();
-    const imagem:ImagemSelecionada = imagens.find((img:ImagemSelecionada) => img.id == 2)
-    
-    return (
-            <Layout>
-                <div className="bg-sky-600 flex flex-col items-center justify-center min-h-screen text-gray-100 p-6">
-                <h1 className="text-4xl font-bold mb-8">Vênus, O Planeta que Nasceu do Caos</h1>
-                <p className="text-lg max-w-3xl text-center">
-                Segundo Velikovsky, Vênus não era o planeta calmo e brilhante que vemos hoje à noite. Em vez disso, era um cometa recém-nascido, ejetado das profundezas de Júpiter, vagando pelo Sistema Solar em uma órbita caótica.
-                O caos começou quando esse cometa passou perigosamente perto da Terra, desencadeando desastres naturais em todo o planeta.</p>
-                <p className="text-lg max-w-3xl text-center">Velikovsky ligou o surgimento de Vênus a eventos históricos, como as Pragas do Egito e a separação do Mar Vermelho, ambos retratados no Êxodo. 
-                Ele sugeriu que o que muitas vezes é descrito como milagres religiosos eram, na verdade, consequências de interações celestiais.</p>
-                <p className="text-lg max-w-3xl text-center">Segundo ele, Vênus causou terremotos, erupções vulcânicas e tempestades de fogo, deixando as civilizações antigas em choque e terror, documentando essas catástrofes em textos sagrados como a Bíblia.</p>
-                <div>
-                    <Image
-                src={imagem.img} 
-                alt="Ilustração de erro"
-                width={500} 
-                height={300}
-                    />
-                </div>
+export default async function tema3() {
+  return (
+    <Layout>
+      <section className="flex flex-col items-center justify-center min-h-screen p-8 bg-gradient-to-r from-white to-blue-500">
+        <div className="w-full max-w-4xl">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Contato</h2>
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="flex flex-col">
+              <label htmlFor="name" className="text-lg font-semibold text-gray-900 mb-2">Nome</label>
+              <input type="text" id="name" className="border border-blue-500 p-2 rounded" />
             </div>
-            </Layout>
-    );
+            <div className="flex flex-col">
+              <label htmlFor="email" className="text-lg font-semibold text-gray-900 mb-2">Email</label>
+              <input type="email" id="email" className="border border-blue-500 p-2 rounded" />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="phone" className="text-lg font-semibold text-gray-900 mb-2">Celular</label>
+              <input type="tel" id="phone" className="border border-blue-500 p-2 rounded" />
+            </div>
+            <div className="flex flex-col col-span-2">
+              <label htmlFor="message" className="text-lg font-semibold text-gray-900 mb-2">Mensagem</label>
+              <textarea id="message" className="border border-blue-500 p-2 rounded h-32"></textarea>
+            </div>
+            <div className="flex justify-center col-span-2">
+              <button type="submit" className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-500 transition duration-200">
+                Enviar
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </Layout>
+  );
 }

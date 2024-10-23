@@ -1,39 +1,69 @@
-import Layout from '../layout';
-import Image from 'next/image';
-import { ImagemSelecionada } from '@/app/types';
+import Link from 'next/link';
 
-export default async function tema3() {
-  const response = await fetch(`http://localhost:3000/api`);
-  const imagens = await response.json();
-  const imagem:ImagemSelecionada = imagens.find((img:ImagemSelecionada) => img.id == 3)
+export default function Login() {
   return (
-    <Layout>
-      <div className="bg-sky-600 flex flex-col items-center justify-center min-h-screen text-gray-100 p-6">
-        <h1 className="text-4xl font-bold mb-8">O Êxodo e as Catástrofes Cósmicas</h1>
-        <p className="text-lg max-w-3xl text-center">
-          Immanuel Velikovsky propôs uma interpretação revolucionária para os eventos descritos no Êxodo, a famosa fuga dos israelitas do Egito, liderada por Moisés. Segundo Velikovsky, esses eventos não foram simples milagres, mas sim consequências diretas de uma catástrofe cósmica envolvendo o planeta Vênus.
-        </p>
-        <p className="mt-4 text-lg max-w-3xl text-center">
-          Ele sugeriu que, em sua fase inicial como um cometa, Vênus passou muito próximo da Terra, causando uma série de fenômenos naturais devastadores que ficaram registrados na Bíblia e em outras tradições antigas.
-        </p>
-        <p className="mt-4 text-lg max-w-3xl text-center">
-          Velikovsky acreditava que as dez pragas do Egito, a escuridão que cobriu o país e a abertura do Mar Vermelho foram todos eventos desencadeados pela interação gravitacional entre Vênus e a Terra.
-        </p>
-        <p className="mt-4 text-lg max-w-3xl text-center">
-          Ele sugeriu que a cauda de Vênus trouxe pedras incandescentes, poeira e gases, que se manifestaram como chuva de fogo e escuridão sobre o Egito. Velikovsky também ofereceu uma explicação científica para a abertura do Mar Vermelho: a intensa força gravitacional exercida por Vênus teria causado uma maré tão forte que as águas recuaram, permitindo a passagem dos israelitas.
-        </p>
-        <p className="mt-4 text-lg max-w-3xl text-center">
-          Logo após, com o afastamento do cometa, as águas teriam retornado, afogando o exército do faraó. Essa visão do Êxodo não só desafia a narrativa tradicional religiosa, como também oferece uma perspectiva cósmica sobre um dos eventos mais conhecidos da história bíblica.
-        </p>
-        <div className="mt-8">
-          <Image
-          src={imagem.img} 
-          alt="Ilustração de erro"
-          width={500} 
-          height={300}
-          />
+    <section className="flex flex-col items-center justify-center min-h-screen p-8 bg-gradient-to-r from-white to-blue-500">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-6">
+          <p className="text-sm text-gray-700">
+            Já tem conta? <Link href="/signup" className="text-blue-600 hover:underline">Sign Up</Link>
+          </p>
         </div>
+        <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Login</h2>
+        <form className="space-y-6">
+          <div className="relative">
+            <input
+              type="email"
+              id="email"
+              className="w-full p-4 pl-12 rounded-full bg-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Email"
+            />
+            <span className="absolute left-4 top-4 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 12c1.333 0 2-1 2-2s-.667-2-2-2M8 12c-1.333 0-2-1-2-2s.667-2 2-2" />
+              </svg>
+            </span>
+          </div>
+          <div className="relative">
+            <input
+              type="password"
+              id="password"
+              className="w-full p-4 pl-12 rounded-full bg-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Senha"
+            />
+            <span className="absolute left-4 top-4 text-gray-600">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 12v4m0 0v4m0-4h4m-4 0H2" />
+              </svg>
+            </span>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="remember"
+                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              />
+              <label htmlFor="remember" className="ml-2 block text-sm text-gray-900">
+                Lembre de mim
+              </label>
+            </div>
+            <div className="text-sm">
+              <Link href="/forgot-password" className="font-medium text-blue-600 hover:underline">
+                Esqueceu a senha?
+              </Link>
+            </div>
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="w-full py-4 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Login
+            </button>
+          </div>
+        </form>
       </div>
-    </Layout>
+    </section>
   );
 }
